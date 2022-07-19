@@ -33,7 +33,9 @@ def visit(link:str):
         return str_to_int(visited[1]["title"])
 
 if __name__ == '__main__' :
-    con =  pymysql.connect(host='localhost',user='root',passwd='20040428')
+    with open("settings.json",'r') as f:
+        lib = json.load(f)
+    con =  pymysql.connect(host='localhost',user=lib["user"],passwd=["pass"])
     cur = con.cursor()
     cur.execute("use summer")
     for _ in tqdm(range(1,5)) :
